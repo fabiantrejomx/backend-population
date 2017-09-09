@@ -28,13 +28,18 @@ public class Natality {
 	@Column(name="value")
 	private String value;
 	
+	@Column(name="country_id")
+	private int country_id;
+	
+	
+	
 //	@ManyToOne(fetch = FetchType.LAZY)
 //	@JoinColumn(name= "country_id", nullable = false)
 //	private Country country;
 	
-	@ManyToOne
-	@JoinColumn(name= "country_id", nullable = false)
-	private Country country;
+//	@ManyToOne ACABO DE COMENTAR ESTE
+//	@JoinColumn(name= "country_id", nullable = false)
+//	private Country country;
 	
 //	public Natality(Long id, int gender, int year, String value, Country country) {
 //		super();
@@ -46,6 +51,14 @@ public class Natality {
 //	}
 //	
 //	public Natality() { }
+
+	public int getCountry_id() {
+		return country_id;
+	}
+
+	public void setCountry_id(int country_id) {
+		this.country_id = country_id;
+	}
 
 	public Long getId() {
 		return id;
@@ -79,11 +92,13 @@ public class Natality {
 		this.value = value;
 	}
 
-	public Country getCountry() {
-		return country;
-	}
-
-	public void setCountry(Country country) {
-		this.country = country;
-	}	
+//	public Country getCountry() {
+//		return country;
+//	}
+//
+//	public void setCountry(Country country) {
+//		this.country = country;
+//	}	
+	
+	
 }

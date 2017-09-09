@@ -17,6 +17,8 @@ public class CountryDetailsVO {
 		this.currency = currency;
 		this.description = description;
 	}
+	
+	public CountryDetailsVO() {}
 
 	public long getId() {
 		return id;

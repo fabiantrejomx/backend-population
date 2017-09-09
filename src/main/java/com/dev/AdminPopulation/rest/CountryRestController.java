@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dev.AdminPopulation.VO.CountryVO;
+import com.dev.AdminPopulation.VO.NatalityVO;
 import com.dev.AdminPopulation.modelo.Country;
 import com.dev.AdminPopulation.modelo.CountryDetails;
 import com.dev.AdminPopulation.modelo.Natality;
@@ -32,34 +34,41 @@ public class CountryRestController {
 	
 	@RequestMapping(value = "/countries", method =  RequestMethod.GET)
 	public ResponseEntity listAllCountries(){
-		List<Country> list = new ArrayList<>();
+		List<Country> countriesDAO = countryService.allCountries();
 		
-		List<Country> countries = countryService.allCountries();
-		logger.info("entro a countries", countries.toString());
-		
-		for(Country country: countries) {
-			Country country2 = new Country();
-			logger.info("forr");
-			logger.info(country.getName());
-			country2.setName(country.getName());
-			list.add(country2);
+		if(countriesDAO.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		
-//		if(countries.isEmpty()) {
-//			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//		}
-		return new ResponseEntity<>(list ,HttpStatus.OK);
+		List<CountryVO> countryList = new ArrayList<>();
+		
+		for(Country country: countriesDAO) {
+			CountryVO countryVO = new CountryVO();
+			countryVO.setId(country.getId());
+			countryVO.setName(country.getName());
+			countryVO.setCapital(country.getCapital());
+			countryVO.setAlias(country.getAlias());			
+			countryList.add(countryVO);
+		}
+		
+		return new ResponseEntity<>(countryList ,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/countries/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Country> country(@PathVariable("id") Long id){
-		Country country = countryService.countryById(id);
+	public ResponseEntity country(@PathVariable("id") Long id){
+		Country countryDAO = countryService.countryById(id);
 		
-		if(country == null) {
-			return new ResponseEntity<Country>(HttpStatus.NO_CONTENT);
+		if(countryDAO == null) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		
-		return new ResponseEntity<Country>(country, HttpStatus.OK);
+		CountryVO countryVO = new CountryVO();
+		countryVO.setId(countryDAO.getId());
+		countryVO.setName(countryDAO.getName());
+		countryVO.setCapital(countryDAO.getCapital());
+		countryVO.setAlias(countryDAO.getAlias());
+		
+		return new ResponseEntity<>(countryVO, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/countries/{id}/details", method = RequestMethod.GET)
@@ -84,16 +93,30 @@ public class CountryRestController {
 //		return new ResponseEntity<List<Natality>>(natality, HttpStatus.OK);
 //	}
 
-//	@RequestMapping(value = "/countries/{countryId}/natality", method = RequestMethod.GET)
-//	public ResponseEntity<Country> countryNatalities(@PathVariable("countryId") Long countryId){
-//		Country country = countryService.countryNatalities(countryId);
-//		
-//		if(country == null) {
-//			return new ResponseEntity<Country>(HttpStatus.NO_CONTENT);
-//		}
-//		
-//		return new ResponseEntity<Country>(country, HttpStatus.OK);	
-//	}
+	@RequestMapping(value="/countries/{countryId}/natality", method = RequestMethod.GET)
+	public ResponseEntity countryNatality(@PathVariable("countryId") Long countryId){
+		
+	List<Natality> natalityDAO = natalityService.natalityByCountry(countryId);
+	
+	if(natalityDAO.isEmpty()) {
+		return new ResponseEntity<List<Natality>>(HttpStatus.NO_CONTENT);
+	}
+	
+	List<NatalityVO> natalityList = new ArrayList<>();
+	
+	for(Natality natality: natalityDAO) {
+		NatalityVO natalityVO = new NatalityVO();
+		natalityVO.setId(natality.getId());
+		natalityVO.setGender(natality.getGender());
+		natalityVO.setValue(natality.getValue());
+		natalityVO.setYear(natality.getYear());
+		natalityVO.setCountry_id(natality.getCountry_id());
+		
+		natalityList.add(natalityVO);
+	}
+		
+		return new ResponseEntity<>(natalityList, HttpStatus.OK);
+	}
 	
 	@Autowired
 	private CountryService countryService;

@@ -36,8 +36,8 @@ public class Country {
 	@PrimaryKeyJoinColumn
 	private CountryDetails countryDetails;
 
-	@OneToMany(mappedBy = "country")
-	private List<Natality> natalities;
+//	@OneToMany(mappedBy = "country") ACABO DE ESTEEEE
+//	private List<Natality> natalities;
 	
 //	@OneToMany(mappedBy = "country")
 //	private List<Natality> natalities;
@@ -96,11 +96,11 @@ public class Country {
 		this.countryDetails = countryDetails;
 	}
 
-	public List<Natality> getNatalities() {
-		return natalities;
-	}
-
-	public void setNatalities(List<Natality> natalities) {
-		this.natalities = natalities;
-	}	
+//	public List<Natality> getNatalities() {
+//		return natalities;
+//	}
+//
+//	public void setNatalities(List<Natality> natalities) {
+//		this.natalities = natalities;
+//	}	
 }

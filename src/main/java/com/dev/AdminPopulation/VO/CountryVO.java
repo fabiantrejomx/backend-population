@@ -29,6 +29,8 @@ public class CountryVO {
 		this.countryDetails = countryDetails;
 		this.natalities = natalities;
 	}
+	
+	public CountryVO() {}
 
 	public Long getId() {
 		return id;

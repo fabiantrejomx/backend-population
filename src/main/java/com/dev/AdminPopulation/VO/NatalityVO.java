@@ -11,17 +11,32 @@ public class NatalityVO {
 	private int year;
 	
 	private String value;
-	
-	private Country country;
 
-	public NatalityVO(Long id, int gender, int year, String value, Country country) {
+	private int country_id;
+	
+	
+//	private Country country;
+
+	public NatalityVO(Long id, int gender, int year, String value, int country_id) {
 		super();
 		this.id = id;
 		this.gender = gender;
 		this.year = year;
 		this.value = value;
-		this.country = country;
+		this.country_id = country_id;
 	}
+	
+	public NatalityVO() {}
+	
+	public int getCountry_id() {
+		return country_id;
+	}
+
+	public void setCountry_id(int country_id) {
+		this.country_id = country_id;
+	}
+
+	
 
 	public Long getId() {
 		return id;
@@ -55,19 +70,19 @@ public class NatalityVO {
 		this.value = value;
 	}
 
-	public Country getCountry() {
-		return country;
-	}
-
-	public void setCountry(Country country) {
-		this.country = country;
-	}
-
-	@Override
-	public String toString() {
-		return "NatalityVO [id=" + id + ", gender=" + gender + ", year=" + year + ", value=" + value + ", country="
-				+ country + "]";
-	}
+//	public Country getCountry() {
+//		return country;
+//	}
+//
+//	public void setCountry(Country country) {
+//		this.country = country;
+//	}
+//
+//	@Override
+//	public String toString() {
+//		return "NatalityVO [id=" + id + ", gender=" + gender + ", year=" + year + ", value=" + value + ", country="
+//				+ country + "]";
+//	}
 	
 	
 }
