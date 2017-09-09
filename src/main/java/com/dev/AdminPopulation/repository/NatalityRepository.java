@@ -13,7 +13,7 @@ public interface NatalityRepository extends CrudRepository<Natality, Long>{
 //	@Query("FROM Natality")
 //	List<Natality> findAllNatality();
 	
-//	@Query("FROM Country as country INNER JOIN Natality as natality WHERE country.id = :id"
+//	@Query("FROM Country as country, Natality as natality WHERE country.id = :id"
 //			+ "AND natality.country_id = country.id")
 //	Natality findCountryDetails(@Param("id") Long id);
 }

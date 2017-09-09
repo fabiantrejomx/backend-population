@@ -14,7 +14,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "country")
 public class Country {
@@ -22,7 +21,7 @@ public class Country {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	@Column(name="id")
-	private long id;
+	private Long id;
 	
 	@Column(name="name")
 	private String name;
@@ -36,38 +35,32 @@ public class Country {
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@PrimaryKeyJoinColumn
 	private CountryDetails countryDetails;
+
+	@OneToMany(mappedBy = "country")
+	private List<Natality> natalities;
 	
-//	private Natality natality;
-	
-	
-	
-//	Este NO --- @OneToMany(mappedBy = "country", cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+//	@OneToMany(mappedBy = "country")
 //	private List<Natality> natalities;
-
-//	public Natality getNatality() {
-//		return natality;
-//	}
-//
-//	public void setNatality(Natality natality) {
-//		this.natality = natality;
-//	}
-
-	public Country(long id, String name, String capital, String alias, CountryDetails countryDetails) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.capital = capital;
-		this.alias = alias;
-		this.countryDetails = countryDetails;
-	}
 	
-	public Country() {}
+	
+//	public Country(Long id, String name, String capital, String alias, CountryDetails countryDetails,
+//		List<Natality> natalities) {
+//		super();
+//		this.id = id;
+//		this.name = name;
+//		this.capital = capital;
+//		this.alias = alias;
+//		this.countryDetails = countryDetails;
+//		this.natalities = natalities;
+//	}
+//	
+//	public Country() {}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -103,20 +96,11 @@ public class Country {
 		this.countryDetails = countryDetails;
 	}
 
-//	public List<Natality> getNatalities() {
-//		return natalities;
-//	}
-//
-//	public void setNatalities(List<Natality> natalities) {
-//		this.natalities = natalities;
-//	}
-
-	@Override
-	public String toString() {
-		return "Country [id=" + id + ", name=" + name + ", capital=" + capital + ", alias=" + alias
-				+ ", countryDetails=" + countryDetails + "]";
+	public List<Natality> getNatalities() {
+		return natalities;
 	}
-	
-	
-	
+
+	public void setNatalities(List<Natality> natalities) {
+		this.natalities = natalities;
+	}	
 }

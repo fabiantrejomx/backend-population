@@ -1,16 +1,20 @@
 package com.dev.AdminPopulation.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.dev.AdminPopulation.modelo.Country;
-import com.dev.AdminPopulation.modelo.Natality;
 
 public interface CountryService {
 	
-	Country findById(long id);
-
-	List<Country> findAllCountries();
+//	Country findById(long id);
 	
-//	Country findCountryDetails(Long id);
+//	Country countryDetailsById(Long id);
+	
+	List<Country> allCountries();
+	
+//	Country countryNatalities(Long id);
+	
+	Country countryById(Long id);
 
 }

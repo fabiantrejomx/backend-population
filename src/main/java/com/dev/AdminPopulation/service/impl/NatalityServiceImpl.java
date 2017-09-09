@@ -1,6 +1,7 @@
 package com.dev.AdminPopulation.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,10 @@ public class NatalityServiceImpl implements NatalityService{
 		
 		return (List<Natality>)natalityRepository.findAll();
 	}
+
+//	@Override
+//	public Set<Natality> countryNatalities(Long id) {
+//		return (Set<Natality>) natalityRepository.countryNatalities(id);
+//	}
 
 }

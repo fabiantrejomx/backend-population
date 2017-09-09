@@ -17,50 +17,50 @@ public class Natality {
 	@Id
 	@GeneratedValue( strategy = GenerationType.AUTO)
 	@Column(name = "id")
-	private int id;
+	private Long id;
+	
+	@Column(name = "gender")
+	private int gender;
 
 	@Column(name ="year")
 	private int year;
 	
 	@Column(name="value")
-	private int value;
-	
-	@Column(name ="country_id")
-	private int country_id;
-	
-	@Column(name = "gender")
-	private int gender;
-	
+	private String value;
 	
 //	@ManyToOne(fetch = FetchType.LAZY)
 //	@JoinColumn(name= "country_id", nullable = false)
 //	private Country country;
 	
-	public Natality(int id, int year, int value, int country_id, int gender) {
-		super();
-		this.id = id;
-		this.year = year;
-		this.value = value;
-		this.country_id = country_id;
-		this.gender = gender;
-	}
+	@ManyToOne
+	@JoinColumn(name= "country_id", nullable = false)
+	private Country country;
 	
-	public Natality() {}
+//	public Natality(Long id, int gender, int year, String value, Country country) {
+//		super();
+//		this.id = id;
+//		this.gender = gender;
+//		this.year = year;
+//		this.value = value;
+//		this.country = country;
+//	}
+//	
+//	public Natality() { }
 
-	public int getCountry_id() {
-		return country_id;
-	}
-
-	public void setCountry_id(int country_id) {
-		this.country_id = country_id;
-	}
-
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public int getGender() {
+		return gender;
+	}
+
+	public void setGender(int gender) {
+		this.gender = gender;
 	}
 
 	public int getYear() {
@@ -71,22 +71,19 @@ public class Natality {
 		this.year = year;
 	}
 
-	public int getValue() {
+	public String getValue() {
 		return value;
 	}
 
-	public void setValue(int value) {
+	public void setValue(String value) {
 		this.value = value;
 	}
 
-//	public Country getCountry() {
-//		return country;
-//	}
-//
-//	public void setCountry(Country country) {
-//		this.country = country;
-//	}
-	
-	
-	
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}	
 }

@@ -10,14 +10,12 @@ import com.dev.AdminPopulation.service.CountryDetailsService;
 @Service
 public class CountryDetailsServiceImpl implements CountryDetailsService{
 
-	@Autowired
-	CountryDetailsRepository countryDetailsRepository;
-
 	@Override
-	public CountryDetails findDetailsById(long id) {
-		return countryDetailsRepository.findDetailsById(id);
+	public CountryDetails countryDetailsById(Long id) {
+		return countryDetailsRepository.countryDetailsById(id);
 	}
 	
-	
+	@Autowired
+	CountryDetailsRepository countryDetailsRepository;
 
 }
