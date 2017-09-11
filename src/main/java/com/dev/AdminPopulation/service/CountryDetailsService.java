@@ -2,11 +2,12 @@ package com.dev.AdminPopulation.service;
 
 
 
+import com.dev.AdminPopulation.VO.CountryDetailsVO;
 import com.dev.AdminPopulation.modelo.CountryDetails;
 
 public interface CountryDetailsService {
 	
 	CountryDetails countryDetailsById(Long id);
 	
-//	CountryDetails updateCountryDetails(String description, Long countryId);
+	CountryDetails updateCountryDetails(CountryDetailsVO countryDetailsVO, Long countryId);
 }

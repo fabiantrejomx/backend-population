@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dev.AdminPopulation.VO.CountryDetailsVO;
 import com.dev.AdminPopulation.VO.CountryVO;
 import com.dev.AdminPopulation.VO.NatalityVO;
 import com.dev.AdminPopulation.modelo.Country;
@@ -84,18 +85,18 @@ public class CountryRestController {
 		return new ResponseEntity<CountryDetails>(countryDetails, HttpStatus.OK);
 	}
 	
-//	@RequestMapping(value = "/countries/{countryId}/details", method = RequestMethod.POST)
-//	public ResponseEntity updateCountryDetails(
-//			@PathVariable("countryId") Long id, 
-//			@RequestBody String description){
-//		CountryDetails countryDetails = countryDetailsService.updateCountryDetails(description, id);
-//		
-//		if(countryDetails == null) {
-//			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//		}
-//		
-//		return new ResponseEntity<>(countryDetails, HttpStatus.OK);
-//	}
+	@RequestMapping(value = "/countries/{countryId}/details", method = RequestMethod.PUT)
+	public ResponseEntity updateCountryDetails(
+			@PathVariable("countryId") Long id, 
+			@RequestBody CountryDetailsVO countryDetailsVO){
+		CountryDetails country = countryDetailsService.updateCountryDetails(countryDetailsVO, id);
+		
+		if(country == null) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		
+		return new ResponseEntity<>(country, HttpStatus.OK);
+	}
 	
 //	@RequestMapping(value = "/countries/natalities", method = RequestMethod.GET)
 //	public ResponseEntity<List<Natality>> natality(){
