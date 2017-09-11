@@ -9,7 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -32,29 +31,14 @@ public class Country {
 	@Column(name="alias")
 	private String alias;
 	
+	@Column(name="image")
+	private String image;
+
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@PrimaryKeyJoinColumn
 	private CountryDetails countryDetails;
 
-//	@OneToMany(mappedBy = "country") ACABO DE ESTEEEE
-//	private List<Natality> natalities;
-	
-//	@OneToMany(mappedBy = "country")
-//	private List<Natality> natalities;
-	
-	
-//	public Country(Long id, String name, String capital, String alias, CountryDetails countryDetails,
-//		List<Natality> natalities) {
-//		super();
-//		this.id = id;
-//		this.name = name;
-//		this.capital = capital;
-//		this.alias = alias;
-//		this.countryDetails = countryDetails;
-//		this.natalities = natalities;
-//	}
-//	
-//	public Country() {}
+	public Country() {}
 
 	public Long getId() {
 		return id;
@@ -88,6 +72,14 @@ public class Country {
 		this.alias = alias;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
 	public CountryDetails getCountryDetails() {
 		return countryDetails;
 	}
@@ -95,12 +87,5 @@ public class Country {
 	public void setCountryDetails(CountryDetails countryDetails) {
 		this.countryDetails = countryDetails;
 	}
-
-//	public List<Natality> getNatalities() {
-//		return natalities;
-//	}
-//
-//	public void setNatalities(List<Natality> natalities) {
-//		this.natalities = natalities;
-//	}	
+	
 }

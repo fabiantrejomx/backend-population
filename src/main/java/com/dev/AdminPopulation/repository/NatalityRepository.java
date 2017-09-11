@@ -11,7 +11,7 @@ import com.dev.AdminPopulation.modelo.Natality;
 
 public interface NatalityRepository extends CrudRepository<Natality, Long>{
 	
-	@Query("FROM Natality as n WHERE n.id = :countryId")
-	List<Natality> natalityByCountry(@Param("countryId") Long countryId);
+	@Query("FROM Natality as n WHERE n.country_id = :countryId")
+	List<Natality> natalityByCountry(@Param("countryId") Integer countryId);
 	
 }

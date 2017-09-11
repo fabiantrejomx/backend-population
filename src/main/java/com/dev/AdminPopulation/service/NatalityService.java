@@ -10,5 +10,5 @@ public interface NatalityService {
 
 	List<Natality> findAllNatality();
 	
-	List<Natality> natalityByCountry(Long countryId);
+	List<Natality> natalityByCountry(Integer countryId);
 }

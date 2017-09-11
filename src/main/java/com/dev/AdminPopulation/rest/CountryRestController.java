@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,7 +48,8 @@ public class CountryRestController {
 			countryVO.setId(country.getId());
 			countryVO.setName(country.getName());
 			countryVO.setCapital(country.getCapital());
-			countryVO.setAlias(country.getAlias());			
+			countryVO.setAlias(country.getAlias());
+			countryVO.setImage(country.getImage());
 			countryList.add(countryVO);
 		}
 		
@@ -82,6 +84,19 @@ public class CountryRestController {
 		return new ResponseEntity<CountryDetails>(countryDetails, HttpStatus.OK);
 	}
 	
+//	@RequestMapping(value = "/countries/{countryId}/details", method = RequestMethod.POST)
+//	public ResponseEntity updateCountryDetails(
+//			@PathVariable("countryId") Long id, 
+//			@RequestBody String description){
+//		CountryDetails countryDetails = countryDetailsService.updateCountryDetails(description, id);
+//		
+//		if(countryDetails == null) {
+//			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//		}
+//		
+//		return new ResponseEntity<>(countryDetails, HttpStatus.OK);
+//	}
+	
 //	@RequestMapping(value = "/countries/natalities", method = RequestMethod.GET)
 //	public ResponseEntity<List<Natality>> natality(){
 //		List<Natality> natality = natalityService.findAllNatality();
@@ -94,7 +109,7 @@ public class CountryRestController {
 //	}
 
 	@RequestMapping(value="/countries/{countryId}/natality", method = RequestMethod.GET)
-	public ResponseEntity countryNatality(@PathVariable("countryId") Long countryId){
+	public ResponseEntity countryNatality(@PathVariable("countryId") Integer countryId){
 		
 	List<Natality> natalityDAO = natalityService.natalityByCountry(countryId);
 	

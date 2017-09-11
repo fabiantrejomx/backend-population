@@ -26,7 +26,7 @@ public class NatalityServiceImpl implements NatalityService{
 	}
 
 	@Override
-	public List<Natality> natalityByCountry(Long countryId) {
+	public List<Natality> natalityByCountry(Integer countryId) {
 		return (List<Natality>) this.natalityRepository.natalityByCountry(countryId);
 	}
 

@@ -15,6 +15,8 @@ public class CountryVO {
 	
 	private String alias;
 	
+	private String image;
+
 	private CountryDetails countryDetails;
 
 	private List<Natality> natalities;
@@ -62,6 +64,14 @@ public class CountryVO {
 
 	public void setAlias(String alias) {
 		this.alias = alias;
+	}
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public CountryDetails getCountryDetails() {

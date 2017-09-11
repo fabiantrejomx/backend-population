@@ -14,6 +14,11 @@ public class CountryDetailsServiceImpl implements CountryDetailsService{
 	public CountryDetails countryDetailsById(Long id) {
 		return countryDetailsRepository.countryDetailsById(id);
 	}
+
+//	@Override
+//	public CountryDetails updateCountryDetails(String description, Long countryId) {
+//		return countryDetailsRepository.updateCountryDetails(description, countryId);
+//	}
 	
 	@Autowired
 	CountryDetailsRepository countryDetailsRepository;
