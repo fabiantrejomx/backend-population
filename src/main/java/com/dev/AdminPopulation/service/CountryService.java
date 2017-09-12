@@ -1,9 +1,8 @@
 package com.dev.AdminPopulation.service;
 
 import java.util.List;
-import java.util.Set;
 
-import com.dev.AdminPopulation.modelo.Country;
+import com.dev.AdminPopulation.DAO.Country;
 
 public interface CountryService {
 	

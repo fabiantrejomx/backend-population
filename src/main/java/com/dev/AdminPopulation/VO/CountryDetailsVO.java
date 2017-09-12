@@ -50,12 +50,6 @@ public class CountryDetailsVO {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	@Override
-	public String toString() {
-		return "CountryDetailsVO [id=" + id + ", population=" + population + ", currency=" + currency + ", description="
-				+ description + "]";
 	}	
 	
 }

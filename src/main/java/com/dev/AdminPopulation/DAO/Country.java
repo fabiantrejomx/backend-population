@@ -1,6 +1,4 @@
-package com.dev.AdminPopulation.modelo;
-
-import java.util.List;
+package com.dev.AdminPopulation.DAO;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

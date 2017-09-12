@@ -1,14 +1,12 @@
 package com.dev.AdminPopulation.service;
 
 import java.util.List;
-import java.util.Set;
 
-import com.dev.AdminPopulation.modelo.Country;
-import com.dev.AdminPopulation.modelo.Natality;
+import com.dev.AdminPopulation.DAO.Natality;
 
 public interface NatalityService {
 
-	List<Natality> findAllNatality();
+	List<Natality> findAllNatalities();
 	
 	List<Natality> natalityByCountry(Integer countryId);
 }

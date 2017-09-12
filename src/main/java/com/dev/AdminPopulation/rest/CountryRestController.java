@@ -2,7 +2,6 @@ package com.dev.AdminPopulation.rest;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dev.AdminPopulation.DAO.Country;
+import com.dev.AdminPopulation.DAO.CountryDetails;
+import com.dev.AdminPopulation.DAO.Natality;
 import com.dev.AdminPopulation.VO.CountryDetailsVO;
 import com.dev.AdminPopulation.VO.CountryVO;
 import com.dev.AdminPopulation.VO.NatalityVO;
-import com.dev.AdminPopulation.modelo.Country;
-import com.dev.AdminPopulation.modelo.CountryDetails;
-import com.dev.AdminPopulation.modelo.Natality;
 import com.dev.AdminPopulation.service.CountryDetailsService;
 import com.dev.AdminPopulation.service.CountryService;
 import com.dev.AdminPopulation.service.NatalityService;
@@ -32,15 +31,12 @@ public class CountryRestController {
 
 	private static final Logger logger = LogManager.getLogger(CountryRestController.class);
 	
-	//----Retrieve all countries---
-	
 	@RequestMapping(value = "/countries", method =  RequestMethod.GET)
 	public ResponseEntity listAllCountries(){
 		List<Country> countriesDAO = countryService.allCountries();
 		
-		if(countriesDAO.isEmpty()) {
+		if(countriesDAO.isEmpty())
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
 		
 		List<CountryVO> countryList = new ArrayList<>();
 		
@@ -61,9 +57,8 @@ public class CountryRestController {
 	public ResponseEntity country(@PathVariable("id") Long id){
 		Country countryDAO = countryService.countryById(id);
 		
-		if(countryDAO == null) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
+		if(countryDAO == null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
 		CountryVO countryVO = new CountryVO();
 		countryVO.setId(countryDAO.getId());
@@ -76,11 +71,10 @@ public class CountryRestController {
 	
 	@RequestMapping(value = "/countries/{id}/details", method = RequestMethod.GET)
 	public ResponseEntity<CountryDetails> countryDetails(@PathVariable("id") Long id){
-		CountryDetails countryDetails = countryDetailsService.countryDetailsById(id);
+		CountryDetails countryDetails = countryDetailsService.countryDetails(id);
 		
-		if(countryDetails == null) {
-			return new ResponseEntity<CountryDetails>(HttpStatus.NO_CONTENT);
-		}
+		if(countryDetails == null)
+			return new ResponseEntity<CountryDetails>(HttpStatus.NOT_FOUND);
 		
 		return new ResponseEntity<CountryDetails>(countryDetails, HttpStatus.OK);
 	}
@@ -89,47 +83,32 @@ public class CountryRestController {
 	public ResponseEntity updateCountryDetails(
 			@PathVariable("countryId") Long id, 
 			@RequestBody CountryDetailsVO countryDetailsVO){
-		CountryDetails country = countryDetailsService.updateCountryDetails(countryDetailsVO, id);
 		
-		if(country == null) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
+		countryDetailsService.updateCountryDetails(countryDetailsVO, id);
 		
-		return new ResponseEntity<>(country, HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
-//	@RequestMapping(value = "/countries/natalities", method = RequestMethod.GET)
-//	public ResponseEntity<List<Natality>> natality(){
-//		List<Natality> natality = natalityService.findAllNatality();
-//		
-//		if(natality.isEmpty()) {
-//			return new ResponseEntity<List<Natality>>(HttpStatus.NO_CONTENT);
-//		}
-//		
-//		return new ResponseEntity<List<Natality>>(natality, HttpStatus.OK);
-//	}
-
 	@RequestMapping(value="/countries/{countryId}/natality", method = RequestMethod.GET)
 	public ResponseEntity countryNatality(@PathVariable("countryId") Integer countryId){
 		
-	List<Natality> natalityDAO = natalityService.natalityByCountry(countryId);
-	
-	if(natalityDAO.isEmpty()) {
-		return new ResponseEntity<List<Natality>>(HttpStatus.NO_CONTENT);
-	}
-	
-	List<NatalityVO> natalityList = new ArrayList<>();
-	
-	for(Natality natality: natalityDAO) {
-		NatalityVO natalityVO = new NatalityVO();
-		natalityVO.setId(natality.getId());
-		natalityVO.setGender(natality.getGender());
-		natalityVO.setValue(natality.getValue());
-		natalityVO.setYear(natality.getYear());
-		natalityVO.setCountry_id(natality.getCountry_id());
+		List<Natality> natalityDAO = natalityService.natalityByCountry(countryId);
 		
-		natalityList.add(natalityVO);
-	}
+		if(natalityDAO.isEmpty()) 
+			return new ResponseEntity<List<Natality>>(HttpStatus.NOT_FOUND);
+	
+		List<NatalityVO> natalityList = new ArrayList<>();
+		
+		for(Natality natality: natalityDAO) {
+			NatalityVO natalityVO = new NatalityVO();
+			natalityVO.setId(natality.getId());
+			natalityVO.setGender(natality.getGender());
+			natalityVO.setValue(natality.getValue());
+			natalityVO.setYear(natality.getYear());
+			natalityVO.setCountry_id(natality.getCountry_id());
+			
+			natalityList.add(natalityVO);
+		}
 		
 		return new ResponseEntity<>(natalityList, HttpStatus.OK);
 	}

@@ -1,13 +1,10 @@
-package com.dev.AdminPopulation.modelo;
+package com.dev.AdminPopulation.DAO;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,26 +28,7 @@ public class Natality {
 	@Column(name="country_id")
 	private int country_id;
 	
-	
-	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name= "country_id", nullable = false)
-//	private Country country;
-	
-//	@ManyToOne ACABO DE COMENTAR ESTE
-//	@JoinColumn(name= "country_id", nullable = false)
-//	private Country country;
-	
-//	public Natality(Long id, int gender, int year, String value, Country country) {
-//		super();
-//		this.id = id;
-//		this.gender = gender;
-//		this.year = year;
-//		this.value = value;
-//		this.country = country;
-//	}
-//	
-//	public Natality() { }
+	public Natality() { }
 
 	public int getCountry_id() {
 		return country_id;
@@ -90,15 +68,6 @@ public class Natality {
 
 	public void setValue(String value) {
 		this.value = value;
-	}
-
-//	public Country getCountry() {
-//		return country;
-//	}
-//
-//	public void setCountry(Country country) {
-//		this.country = country;
-//	}	
-	
+	}	
 	
 }

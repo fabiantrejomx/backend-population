@@ -1,4 +1,4 @@
-package com.dev.AdminPopulation.modelo;
+package com.dev.AdminPopulation.DAO;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,16 +24,6 @@ public class CountryDetails {
 	
 	@Column(name = "description")
 	private String description;
-	
-
-	public CountryDetails(long id, int population, String currency, String description) {
-		super();
-		this.id = id;
-		this.population = population;
-		this.currency = currency;
-		this.description = description;
-	}
-
 	
 	public CountryDetails() {}
 

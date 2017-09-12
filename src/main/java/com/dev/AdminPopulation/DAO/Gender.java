@@ -1,4 +1,4 @@
-package com.dev.AdminPopulation.modelo;
+package com.dev.AdminPopulation.DAO;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,11 +19,7 @@ public class Gender {
 	@Column(name="gender")
 	private long gender;
 
-	public Gender(int id, long gender) {
-		super();
-		this.id = id;
-		this.gender = gender;
-	}
+	public Gender() { }
 
 	public int getId() {
 		return id;
@@ -40,13 +36,5 @@ public class Gender {
 	public void setGender(long gender) {
 		this.gender = gender;
 	}
-
-	@Override
-	public String toString() {
-		return "Gender [id=" + id + ", gender=" + gender + "]";
-	}
-
-	
-	
 	
 }

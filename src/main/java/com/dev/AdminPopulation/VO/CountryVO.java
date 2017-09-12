@@ -2,8 +2,8 @@ package com.dev.AdminPopulation.VO;
 
 import java.util.List;
 
-import com.dev.AdminPopulation.modelo.CountryDetails;
-import com.dev.AdminPopulation.modelo.Natality;
+import com.dev.AdminPopulation.DAO.CountryDetails;
+import com.dev.AdminPopulation.DAO.Natality;
 
 public class CountryVO {
 	
@@ -88,13 +88,5 @@ public class CountryVO {
 
 	public void setNatalities(List<Natality> natalities) {
 		this.natalities = natalities;
-	}
-
-	@Override
-	public String toString() {
-		return "CountryVO [id=" + id + ", name=" + name + ", capital=" + capital + ", alias=" + alias
-				+ ", countryDetails=" + countryDetails + ", natalities=" + natalities + "]";
-	}
-	
-	
+	}	
 }
